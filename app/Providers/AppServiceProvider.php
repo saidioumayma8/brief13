@@ -2,32 +2,25 @@
 
 namespace App\Providers;
 
-use Illuminate\Pagination\Paginator; // Import the correct namespace
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
     }
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
+        //
         Schema::defaultStringLength(191);
-
-        // Use Bootstrap 5 for pagination
-        Paginator::useBootstrapFive();
     }
 }
