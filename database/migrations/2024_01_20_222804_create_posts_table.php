@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->longText("body");
+            $table->text("ingredients");
             $table->string('image');
-            // $table->text('ingredients');
-            // $table->text('instructions');
-
             $table->foreignId("user_id")
             ->constrained();
             $table->timestamps();

@@ -37,11 +37,10 @@ class PostController extends Controller
             "body" => "required",
             "ingredients" => "required",
         ]);
-
-        $incomingFields["title"] = strip_tags($incomingFields["title"]);
-        $incomingFields["body"] = strip_tags($incomingFields["body"]);
-        $incomingFields["ingeredients"] = strip_tags($incomingFields["ingeredients"]);
-        $incomingFields["image"] = $request-file("image");
+        $image = $request->file("image");
+        $imageName = time() . "." . $image->extension();
+        $image->move(public_path('images/storage'), $imageName);
+        $incomingFields["image"] = $imageName;
         $incomingFields["user_id"] = auth()->id();
         Post::create($incomingFields);
         return redirect("/");
@@ -52,5 +51,20 @@ class PostController extends Controller
         }
             return redirect("/");
 
+    }
+
+
+    public function search(Request $request)
+    {
+        $key = trim($request->get('q'));
+        $posts = Post::query()
+            ->where('title', 'like', "%{$key}%")
+            ->orWhere('body', 'like', "%{$key}%")
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('search', [
+            'key' => $key,
+            'posts' => $posts,
+        ]);
     }
 }

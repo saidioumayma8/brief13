@@ -42,7 +42,18 @@
 
             </form>
         </div>
-
+        <div class="card my-4">
+            <h5 class="card-header">Recherche</h5>
+            <form class="card-body" action="/search" method="POST">
+                {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Rechercher..." name="q">
+                    <span class="input-group-btn">
+                <button class="btn btn-secondary" type="submit">Go!</button>
+                </span>
+                </div>
+            </form>
+            </div>
         <div class="mt-8">
             <h2 class="text-xl font-bold mb-4">All Posts</h2>
             {{-- @foreach($posts as $post)
@@ -61,18 +72,18 @@
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
                     <div class="col-lg-12">
-                        <div class="row g-4">
+                        <div class="flex justify-between">
         @foreach($posts as $post)
                                     <div class="post col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative fruite-item">
+                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="img/{{$post->image}}" class="img-fluid w-100 rounded-top" alt="idk">
+                                                <img src="images/storage/{{$post->image}}" class="img-fluid w-100 rounded-top" alt="idk">
                                             </div>
                                             {{-- <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div> --}}
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h1>{{ $post->title }}</h1>
                                                 <p>{{$post->body}}</p>
-                                                <p><h2>ingeredients</h2>{{$post->ingeredients}}</p>
+                                                <p><h2>ingeredients</h2>{{$post->ingredients}}</p>
 
                                             </div>
                                         </div>
