@@ -13,10 +13,15 @@ class PostController extends Controller
         }
         $incomingFields = $request->validate([
             'title' => "required",
-            "body" => "required"
+            "body" => "required",
+            "ingeredients" => "required",
+            "instruction" => "required"
         ]);
         $incomingFields["title"] = strip_tags($incomingFields["title"]);
         $incomingFields["body"] = strip_tags($incomingFields["body"]);
+        $incomingFields["ingeredients"] = strip_tags($incomingFields["ingeredients"]);
+        $incomingFields["instruction"] = strip_tags($incomingFields["instruction"]);
+
         $post->update($incomingFields);
         return redirect("/");
     }
@@ -29,11 +34,14 @@ class PostController extends Controller
     public function create(Request $request){
         $incomingFields = $request->validate([
             'title' => "required",
-            "body" => "required"
+            "body" => "required",
+            "ingredients" => "required",
         ]);
 
         $incomingFields["title"] = strip_tags($incomingFields["title"]);
         $incomingFields["body"] = strip_tags($incomingFields["body"]);
+        $incomingFields["ingeredients"] = strip_tags($incomingFields["ingeredients"]);
+        $incomingFields["image"] = $request-file("image");
         $incomingFields["user_id"] = auth()->id();
         Post::create($incomingFields);
         return redirect("/");

@@ -27,6 +27,14 @@
             <label for="body" class="block text-sm font-medium text-gray-600">Body</label>
             <textarea name="body" id="body" cols="30" rows="10" class="w-full border p-2">{{$post->body}}</textarea>
         </div>
+        <div class="mb-4">
+            <label for="body" class="block text-sm font-medium text-gray-600">ingeredients</label>
+            <textarea name="body" id="body" cols="30" rows="10" class="w-full border p-2">{{$post->ingeredients}}</textarea>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+            <input type="file" class="form-control" id="inputGroupFile01">
+          </div>
 
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save Changes</button>
     </form>
